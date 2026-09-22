@@ -533,6 +533,79 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  .faq .more{font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){.avail b::after{animation:none}}
+
+/* ---------- Project files: blurred animated previews, open the store ---------- */
+.pfg2{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;max-width:1040px;margin:6vh auto 0;-webkit-mask-image:linear-gradient(#000 72%,rgba(0,0,0,.08));mask-image:linear-gradient(#000 72%,rgba(0,0,0,.08))}
+.pcard{position:relative;display:block;border-radius:24px;overflow:hidden;background:#fff;box-shadow:inset 0 0 0 1.5px #e9e9e9,0 4px 0 -1px #e2e2e2;container-type:inline-size;text-decoration:none;color:inherit;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.pc1,.pc4{grid-column:span 3;aspect-ratio:344/200}
+.pc2,.pc3{grid-column:span 2;aspect-ratio:230/200}
+.pc1 .sc,.pc4 .sc{--u:calc(100cqw / 344)}
+.pc2 .sc,.pc3 .sc{--u:calc(100cqw / 230)}
+@supports not (width:1cqw){.pcard .sc{--u:1px}}
+.plab{position:absolute;left:12px;bottom:12px;z-index:2;display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font:600 13px var(--b);color:#111;box-shadow:0 6px 16px -8px rgba(0,0,0,.35);transform:translateY(4px);opacity:.92;transition:transform .3s,opacity .3s,background .3s,color .3s}
+.plab i{font-style:normal;transition:transform .3s}
+.pcard:hover .sc,.pcard:focus-visible .sc{filter:blur(0);transform:scale(1.03)}
+.pcard:hover .plab,.pcard:focus-visible .plab{transform:none;opacity:1;background:#111;color:#fff}
+.pcard:hover .plab i{transform:translateX(3px)}
+.pcard:active{transform:scale(.97)}
+@media(max-width:640px){
+ .pfg2{gap:8px;margin-top:24px}
+ .pcard{border-radius:16px}
+ .plab{left:7px;bottom:7px;padding:4px 8px;font-size:9.5px;gap:5px}
+}
+@media(prefers-reduced-motion:reduce){.pcard .sc,.pcard .sc *{animation:none!important}}
+
+.pcard .sc{position:absolute;left:0;top:0;width:calc(344*var(--u));height:calc(200*var(--u));overflow:hidden;font-family:var(--b);color:#111;filter:blur(calc(1.3*var(--u)));transition:filter .4s,transform .6s cubic-bezier(.2,.8,.2,1)}
+.pc2 .sc,.pc3 .sc{width:calc(230*var(--u))}
+.pcard .sc *{position:absolute;box-sizing:border-box;font-style:normal;text-decoration:none}
+/* 1 grid */
+.s-grid{background:#f6f6f6}
+.s-grid .topbar{left:calc(44*var(--u));right:calc(44*var(--u));top:0;height:calc(22*var(--u));display:flex;align-items:center;gap:calc(6*var(--u));font:700 calc(8*var(--u)) var(--b);letter-spacing:.12em;color:#111;position:absolute}
+.s-grid .topbar i{position:static;width:calc(10*var(--u));height:calc(10*var(--u));border-radius:50%;background:#F13E02}
+.s-grid .topbar b{position:static;margin-left:auto;font:600 calc(8*var(--u)) var(--b);letter-spacing:0}
+.s-grid .gridwrap{left:calc(44*var(--u));right:calc(44*var(--u));top:calc(24*var(--u));bottom:0;overflow:hidden}
+.s-grid .gridmove{left:0;right:0;top:0;display:grid;grid-template-columns:repeat(3,1fr);gap:calc(8*var(--u));position:absolute;animation:gscroll 9s linear infinite}
+.s-grid .tile{position:relative;height:calc(96*var(--u));border-radius:calc(12*var(--u));background:#fff;box-shadow:0 calc(4*var(--u)) calc(10*var(--u)) calc(-6*var(--u)) rgba(0,0,0,.25)}
+.s-grid .tee{left:50%;top:calc(10*var(--u));width:calc(40*var(--u));height:calc(42*var(--u));margin-left:calc(-20*var(--u));border-radius:calc(6*var(--u)) calc(6*var(--u)) calc(4*var(--u)) calc(4*var(--u));background:var(--c)}
+.s-grid .tee::before,.s-grid .tee::after{content:"";position:absolute;top:calc(2*var(--u));width:calc(16*var(--u));height:calc(14*var(--u));background:var(--c);border-radius:calc(3*var(--u))}
+.s-grid .tee::before{left:calc(-11*var(--u));transform:rotate(-24deg)}.s-grid .tee::after{right:calc(-11*var(--u));transform:rotate(24deg)}
+.s-grid .nm{left:calc(9*var(--u));top:calc(60*var(--u));font:700 calc(8*var(--u)) var(--b)}
+.s-grid .row{left:calc(9*var(--u));right:calc(9*var(--u));top:calc(74*var(--u));height:calc(14*var(--u));display:flex;align-items:center;justify-content:space-between}
+.s-grid .row em{position:static;font:700 calc(8*var(--u)) var(--b);color:#F13E02}
+.s-grid .row u{position:static;padding:calc(3*var(--u)) calc(7*var(--u));border-radius:calc(99*var(--u));background:#111;color:#fff;font:600 calc(7*var(--u)) var(--b)}
+@keyframes gscroll{to{transform:translateY(calc(-208*var(--u)))}}
+/* 2 dark */
+.s-dark{background:radial-gradient(90% 70% at 50% 40%,#232323,#0d0d0d)}
+.s-dark .px{width:calc(13*var(--u));height:calc(13*var(--u));animation:pix 2.4s ease-in-out infinite}
+@keyframes pix{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(calc(-6*var(--u)))}}
+.s-dark .shop{left:0;right:0;top:calc(120*var(--u));text-align:center;font:400 calc(20*var(--u)) var(--f);color:#fff;letter-spacing:-.01em;text-shadow:0 0 calc(18*var(--u)) rgba(255,255,255,.35)}
+.s-dark .bar{left:calc(60*var(--u));right:calc(60*var(--u));bottom:calc(26*var(--u));height:calc(3*var(--u));border-radius:calc(3*var(--u));background:#333;overflow:hidden}
+.s-dark .bar::after{content:"";position:absolute;left:0;top:0;bottom:0;width:40%;background:#F13E02;animation:barx 2.8s ease-in-out infinite}
+@keyframes barx{0%{transform:translateX(-100%)}100%{transform:translateX(250%)}}
+/* 3 portfolio */
+.s-port{background:linear-gradient(180deg,#eef0f5,#fff)}
+.s-port .pt{left:0;right:0;top:calc(26*var(--u));text-align:center;font:500 calc(14*var(--u)) var(--b);letter-spacing:-.02em;color:#444}
+.s-port .pt strong{position:static;font-weight:700;color:#111}
+.s-port .dv{width:calc(92*var(--u));height:calc(112*var(--u));border-radius:calc(12*var(--u));background:#fff;box-shadow:0 calc(14*var(--u)) calc(26*var(--u)) calc(-12*var(--u)) rgba(0,0,0,.35);animation:flt 4s ease-in-out infinite}
+.s-port .back{left:calc(48*var(--u));top:calc(66*var(--u));transform:rotate(-9deg);background:#1d1f24;animation-delay:-2s}
+.s-port .front{left:calc(96*var(--u));top:calc(78*var(--u));transform:rotate(7deg)}
+.s-port .av{left:calc(10*var(--u));top:calc(10*var(--u));width:calc(18*var(--u));height:calc(18*var(--u));border-radius:50%;background:#ffcfb5}
+.s-port .ln{left:calc(34*var(--u));top:calc(13*var(--u));width:calc(46*var(--u));height:calc(5*var(--u));border-radius:calc(3*var(--u));background:#bbb}
+.s-port .ln.s{top:calc(22*var(--u));width:calc(30*var(--u));background:#ddd}
+.s-port .im{left:calc(10*var(--u));right:calc(10*var(--u));top:calc(36*var(--u));height:calc(46*var(--u));border-radius:calc(8*var(--u));background:#3a3d44}
+.s-port .im.o{background:linear-gradient(135deg,#ffd2bb,#F13E02)}
+.s-port .front u{left:calc(10*var(--u));bottom:calc(10*var(--u));padding:calc(4*var(--u)) calc(8*var(--u));border-radius:calc(99*var(--u));background:#111;color:#fff;font:600 calc(7*var(--u)) var(--b)}
+.s-port .back .ln{background:#555}.s-port .back .ln.s{background:#444}
+@keyframes flt{0%,100%{translate:0 0}50%{translate:0 calc(-7*var(--u))}}
+/* 4 chart */
+.s-chart{background:#fff}
+.s-chart .pill{left:50%;top:calc(24*var(--u));margin-left:calc(-70*var(--u));width:calc(140*var(--u));height:calc(26*var(--u));border-radius:calc(99*var(--u));background:#3f4247;color:#9be7b8;display:flex;align-items:center;gap:calc(7*var(--u));padding:0 calc(5*var(--u));font:600 calc(9*var(--u)) var(--b);white-space:nowrap}
+.s-chart .pill b{position:static;width:calc(18*var(--u));height:calc(18*var(--u));border-radius:50%;border:calc(1.5*var(--u)) solid #9be7b8;display:grid;place-items:center;font-size:calc(9*var(--u))}
+.s-chart .pill em{position:static;margin-left:auto;padding:calc(2*var(--u)) calc(8*var(--u));border-radius:calc(99*var(--u));background:#9be7b8;color:#1f3b2a;font-size:calc(8*var(--u))}
+.s-chart svg{left:0;top:0;width:100%;height:100%}
+.s-chart .ln2{fill:none;stroke:#7fdca6;stroke-width:calc(3.5*var(--u));stroke-linecap:round;stroke-dasharray:520;stroke-dashoffset:520;animation:draw 5s ease-in-out infinite}
+.s-chart .fl{fill:#7fdca6;opacity:.12}
+@keyframes draw{0%{stroke-dashoffset:520}55%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:-520}}
 </style>
 </head>
 <body id="top">
@@ -699,12 +772,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 </section>
 <section class="pf" id="pf">
   <h2>Project files</h2>
-  <p>Ready-made site files you can start from. Tap one and I'll send it on WhatsApp.</p>
-  <div class="pfg">
-    <div class="card"><div class="thumb">Streetwear</div><b>Streetwear store</b><p>Product grid, custom print pages and a bold brand hero.</p><a href="#" data-wa="Hi Aarav! I'd like the Streetwear store files." target="_blank" rel="noopener">Request the files</a></div>
-    <div class="card"><div class="thumb">Lookbook</div><b>Dark lookbook</b><p>An editorial landing page for fashion and clothing brands.</p><a href="#" data-wa="Hi Aarav! I'd like the Dark lookbook files." target="_blank" rel="noopener">Request the files</a></div>
-    <div class="card"><div class="thumb">Portfolio</div><b>Designer portfolio</b><p>A premium personal site with work, approach and booking.</p><a href="#" data-wa="Hi Aarav! I'd like the Designer portfolio files." target="_blank" rel="noopener">Request the files</a></div>
-  </div>
+  <p>Ready-made site files you can start from. Tap one to see it in my store.</p>
+  <div class="pfg2"><a class="pcard pc1" href="#" data-file="Streetwear store" target="_blank" rel="noopener" aria-label="Streetwear store: view in store"><div class="sc s-grid"><div class="topbar"><i></i>WEAR YOUR VIBE<b>🛒 2</b></div><div class="gridwrap"><div class="gridmove"><div class="tile"><div class="tee" style="--c:#111"></div><i class="nm">Box tee</i><i class="row"><em>$24</em><u>Add</u></i></div><div class="tile"><div class="tee" style="--c:#F13E02"></div><i class="nm">Vibe tee</i><i class="row"><em>$28</em><u>Add</u></i></div><div class="tile"><div class="tee" style="--c:#e9e4dc"></div><i class="nm">Sand tee</i><i class="row"><em>$22</em><u>Add</u></i></div><div class="tile"><div class="tee" style="--c:#3b5bdb"></div><i class="nm">Blue tee</i><i class="row"><em>$26</em><u>Add</u></i></div><div class="tile"><div class="tee" style="--c:#2f2f2f"></div><i class="nm">Coal tee</i><i class="row"><em>$30</em><u>Add</u></i></div><div class="tile"><div class="tee" style="--c:#d9d2c5"></div><i class="nm">Cream tee</i><i class="row"><em>$20</em><u>Add</u></i></div><div class="tile"><div class="tee" style="--c:#111"></div><i class="nm">Box tee</i><i class="row"><em>$24</em><u>Add</u></i></div><div class="tile"><div class="tee" style="--c:#F13E02"></div><i class="nm">Vibe tee</i><i class="row"><em>$28</em><u>Add</u></i></div><div class="tile"><div class="tee" style="--c:#e9e4dc"></div><i class="nm">Sand tee</i><i class="row"><em>$22</em><u>Add</u></i></div><div class="tile"><div class="tee" style="--c:#3b5bdb"></div><i class="nm">Blue tee</i><i class="row"><em>$26</em><u>Add</u></i></div><div class="tile"><div class="tee" style="--c:#2f2f2f"></div><i class="nm">Coal tee</i><i class="row"><em>$30</em><u>Add</u></i></div><div class="tile"><div class="tee" style="--c:#d9d2c5"></div><i class="nm">Cream tee</i><i class="row"><em>$20</em><u>Add</u></i></div></div></div></div><span class="plab">Streetwear store<i>→</i></span></a><a class="pcard pc2" href="#" data-file="Dark lookbook" target="_blank" rel="noopener" aria-label="Dark lookbook: view in store"><div class="sc s-dark"><i class="px" style="left:calc(96*var(--u));top:calc(70*var(--u));background:#9ad0ff;animation-delay:-0s"></i><i class="px" style="left:calc(110*var(--u));top:calc(70*var(--u));background:#cfe8ff;animation-delay:-0.3s"></i><i class="px" style="left:calc(110*var(--u));top:calc(56*var(--u));background:#9ad0ff;animation-delay:-0.6s"></i><i class="px" style="left:calc(82*var(--u));top:calc(86*var(--u));background:#6fb6ff;animation-delay:-0.9s"></i><i class="px" style="left:calc(146*var(--u));top:calc(84*var(--u));background:#9ad0ff;animation-delay:-0.2s"></i><i class="px" style="left:calc(160*var(--u));top:calc(84*var(--u));background:#cfe8ff;animation-delay:-0.5s"></i><i class="px" style="left:calc(124*var(--u));top:calc(98*var(--u));background:#F13E02;animation-delay:-0.8s"></i><i class="px" style="left:calc(60*var(--u));top:calc(120*var(--u));background:#9ad0ff;animation-delay:-1.1s"></i><i class="px" style="left:calc(176*var(--u));top:calc(118*var(--u));background:#6fb6ff;animation-delay:-0.4s"></i><b class="shop">Lookbook</b><i class="bar"></i></div><span class="plab">Dark lookbook<i>→</i></span></a><a class="pcard pc3" href="#" data-file="Designer portfolio" target="_blank" rel="noopener" aria-label="Designer portfolio: view in store"><div class="sc s-port"><b class="pt">Your new <strong>portfolio</strong></b><div class="dv back"><i class="av"></i><i class="ln"></i><i class="ln s"></i><i class="im"></i></div><div class="dv front"><i class="av"></i><i class="ln"></i><i class="ln s"></i><i class="im o"></i><u>Book a call</u></div></div><span class="plab">Designer portfolio<i>→</i></span></a><a class="pcard pc4" href="#" data-file="All project files" target="_blank" rel="noopener" aria-label="All project files: view in store"><div class="sc s-chart"><i class="pill"><b>↗</b>Browse all files<em>Store</em></i><svg viewBox="0 0 344 200" preserveAspectRatio="none"><path class="ln2" d="M0 170 C40 160 60 150 90 120 S130 60 150 58 S170 118 200 128 S240 110 262 132 S300 96 344 84"/><path class="fl" d="M0 170 C40 160 60 150 90 120 S130 60 150 58 S170 118 200 128 S240 110 262 132 S300 96 344 84 L344 200 L0 200Z"/></svg></div><span class="plab">All files<i>→</i></span></a></div>
 </section>
 </main>
 
@@ -717,7 +786,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     <a class="mail" data-mail href="mailto:hello@eagle.com">hello@eagle.com</a>
     <nav class="flinks" aria-label="Footer">
       <a href="#book">Book a project</a><a href="#pf">Project files</a><a href="#work">Work</a>
-      <a href="https://instagram.com/7eagle.vox" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#000" stroke="none"/></svg></a><a href="https://wa.me/9779842128071" data-wa="Hi Aarav! I found you on your website." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 8.6c.2 2.9 3.1 6 6.3 6.4l1-1.5-2-1-1 .9c-1-.4-2.1-1.5-2.5-2.5l.9-1-1-2z" fill="#000" stroke-width=".6"/></svg></a>
+      <a href="https://instagram.com/7eagleee" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#000" stroke="none"/></svg></a><a href="https://wa.me/9779842128071" data-wa="Hi Aarav! I found you on your website." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 8.6c.2 2.9 3.1 6 6.3 6.4l1-1.5-2-1-1 .9c-1-.4-2.1-1.5-2.5-2.5l.9-1-1-2z" fill="#000" stroke-width=".6"/></svg></a>
     </nav>
   </div>
   <small class="copy">© 2026 Aarav Giri — EAGLE. Based in Morang, working worldwide.</small>
@@ -728,9 +797,11 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 const MAIL='hello@eagle.com';        // 1. your real email
 const WEB3FORMS_KEY='';              // 2. optional: key from web3forms.com. Leave empty to use FormSubmit (works with just your email)
 const WHATSAPP='9779842128071';      // 3. WhatsApp number with country code, no + or spaces
+const STORE='';                      // 4. your Payhip store link, e.g. 'https://payhip.com/yourname' (empty = files are requested on WhatsApp)
 /* ===================================================================== */
 document.querySelectorAll('[data-mail]').forEach(a=>{a.href='mailto:'+MAIL;a.textContent=MAIL});
 document.querySelectorAll('[data-wa]').forEach(a=>{a.href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(a.dataset.wa)}`});
+document.querySelectorAll('[data-file]').forEach(a=>{a.href=STORE||`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hi Aarav! I'd like the ${a.dataset.file}.`)}`});
 const $=s=>document.querySelector(s);
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const names=['FREE BIRD','CASUAL','FALANOCO','ACHAR'];
